@@ -1,0 +1,57 @@
+persons.parallelStream().sorted().map(Person::getName).forEachOrdered(System.out::println);
+
+
+zwrocenie listy posortowanej
+List<String> sorted = persons.parallelStream().sorted().map(Person::getName).collect(Collectors.toList());
+
+https://www.javatpoint.com/Comparator-interface-in-collection-framework
+
+pliki:
+https://www.mkyong.com/java/how-to-read-file-from-java-bufferedreader-example/
+
+
+serializacja _________________________________________________
+
+http://www.samouczekprogramisty.pl/serializacja-w-jezyku-java/
+
+try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("objects.bin"))) {
+    outputStream.writeObject(Integer.valueOf(1));
+    outputStream.writeObject(Integer.valueOf(2));
+}
+
+try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("objects.bin"))) {
+    Integer number = (Integer) inputStream.readObject();
+    System.out.println(number);
+    number = (Integer) inputStream.readObject();
+    System.out.println(number);
+}
+
+
+
+generyczny _______________________________________________
+http://www.samouczekprogramisty.pl/typy-generyczne-w-jezyku-java/
+
+
+
+
+
+public class BoxOnSteroids<T> {
+    public T fruit;
+
+    public BoxOnSteroids(T fruit) {
+        this.fruit = fruit;
+    }
+
+    public T getFruit() {
+        return fruit;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        BoxOnSteroids<Apple> appleBox = new BoxOnSteroids<Apple>(new Apple());
+        BoxOnSteroids<Orange> orangeBox = new BoxOnSteroids<Orange>(new Orange());
+
+        Orange fruit = orangeBox.getFruit();
+    }
+}
